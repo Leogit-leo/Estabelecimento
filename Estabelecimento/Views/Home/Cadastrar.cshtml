@@ -19,7 +19,7 @@
     <form method="post" name="FormCadastro">
         <div class="form-group col-md-6">
             <label>Razão Social</label>
-            <input type="text" name="razao_social" placeholder="Razão Social" class="form-control" required />
+            <input type="text" name="razao_social" placeholder="Razão Social" class="form-control" />
         </div>
 
         <div class="form-group col-md-6">
@@ -29,7 +29,7 @@
 
         <div class="form-group col-md-4">
             <label>CNPJ</label>
-            <input  type="text" name="cnpj" placeholder="CNPJ" class="form-control" required/>
+            <input  type="text" name="cnpj" placeholder="CNPJ" class="form-control" maxlength="18" onkeyup="maskCnpj(this)" />
         </div>
 
         <div class="form-group col-md-8">
@@ -86,19 +86,19 @@
         <div class="form-group col-md-4">
             <label>Status</label>
             <select name="status" class="form-control">
-                <option value="1">Ativo</option>
+                <option value="1" selected>Ativo</option>
                 <option value="0">Inativo</option>
             </select>
         </div>
 
         <div class="form-group col-md-4">
             <label>Agencia</label>
-            <input type="text" name="agencia" placeholder="Agencia" class="form-control" />
+            <input type="text" name="agencia" placeholder="Agencia" class="form-control" maxlength="5" onkeyup="maskAgencia(this)" />
         </div>
 
         <div class="form-group col-md-4">
             <label>Conta</label>
-            <input type="text" name="conta" placeholder="Conta" class="form-control" />
+            <input type="text" name="conta" placeholder="Conta" class="form-control" maxlength="8" onkeyup="maskConta(this)" />
         </div> 
 
         <div class="btn-cadastrar">
@@ -108,82 +108,65 @@
     </form>
 </div>
 
+<script>
+    function validarCampo(el, expReg) {
+        var e = $(el).val().replace(expReg, '');
+        $(el).val(e);
+    }
+
+    function maskCnpj(el) {  /*  00.000.000/0000-00    */
+
+        validarCampo(el, /[^0-9\.\/\-/]/g);
+        var e = $(el).val();
+
+        if (event.keyCode != 8) {
+            
+            if (e.length == 2) {
+                $(el).val(e + '.');
+            }
+            if (e.length == 6) {
+                $(el).val(e + '.');
+            }
+            if (e.length == 10) {
+                $(el).val(e + '/');
+            }
+            if (e.length == 15) {
+                $(el).val(e + '-');
+            }
+        }
+    }
+
+    function maskAgencia(el) { /* Agência: xxx-x */
+        var e = $(el).val();
+            validarCampo(el, /[^0-9\-]/g);
+
+            if(event.keyCode != 8){
+                    if (e.length == 3) {
+                        $(el).val(e + '-');
+                    }
+            }
+    }
+
+    function maskConta(el) {  /* Conta: xx.xxx-x */
+        var e = $(el).val();
+        validarCampo(el, /[^0-9\.\-]/g);
+
+        if (event.keyCode != 8) {
+            if (e.length == 2) {
+                $(el).val(e + '.');
+            }
+            if (e.length == 6) {
+                $(el).val(e + '-');
+            }
+        }
+    }
+
+</script>
 
 
 @*script abaixo esta aqui 
 <script src="~/Scripts/formularioCadastrar.js"></script>*@
 
-@*<script>
-    function validaForm() {
-        //var RazaoSocial = FormCadastro.razao_social.value;
-        //var NomeFantasia = FormCadastro.nome_fantasia.value;
-        //var Cnpj = FormCadastro.cnpj.value;
-        //var Endereco = FormCadastro.endereco.value;
-        //var Cidade = FormCadastro.id_cidade.value;
-        //var Estado = FormCadastro.id_estado.value;
-        //var Telefone = FormCadastro.telefone.value;
-        //var Email = FormCadastro.email.value;
-        //var Categoria = FormCadastro.id_categoria.value;
-        //var Status = FormCadastro.status.value;
-        //var Agencia = FormCadastro.agencia.value;
-        //var Conta = FormCadastro.conta.value;
 
-        var objeto ={
-            razao_social: FormCadastro.razao_social.value,
-            nome_fantasia: FormCadastro.nome_fantasia.value,
-            Cnpj : FormCadastro.cnpj.value,
-            Endereco : FormCadastro.endereco.value,
-            id_cidade: FormCadastro.id_cidade.value,
-            id_estado: FormCadastro.id_estado.value,
-            Telefone : FormCadastro.telefone.value,
-            Email : FormCadastro.email.value,
-            id_categoria: FormCadastro.id_categoria.value,
-            Status : FormCadastro.status.value,
-            Agencia : FormCadastro.agencia.value,
-            Conta : FormCadastro.conta.value
-        }
-
-
-        $.ajax({
-            type: 'post',
-            url: "@Url.Action("Cadastrar", "Home")",
-            data:{'estabelecimento':objeto},
-            success: function (data) {
-                if (data.sucesso == true) {
-                    limpaForm();
-                    alert(data.Mensagem);
-                    alert(data.sucesso);
-                }
-                else {
-                    alert(data.Mensagem);
-                    alert(data.sucesso);
-                }
-            },
-            error: function () {
-                alert("Erro ao tentar cadastrar");
-            }
-        });
-
-    }
-    
-
-    function limpaForm() {
-        //limpa o formulário
-
-        FormCadastro.razao_social.value = "";
-        FormCadastro.nome_fantasia.value = "";
-        FormCadastro.cnpj.value = "";
-        FormCadastro.endereco.value = "";
-        FormCadastro.id_cidade.value = 0;
-        FormCadastro.id_estado.value = 0;
-        FormCadastro.telefone.value = "";
-        FormCadastro.email.value = "";
-        FormCadastro.id_categoria.value = 0;
-        FormCadastro.status.value = "";
-        FormCadastro.agencia.value = "";
-        FormCadastro.conta.value = "";
-    }
-
-</script>*@
 
 

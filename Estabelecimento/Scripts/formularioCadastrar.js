@@ -37,11 +37,9 @@
             if (data.sucesso == true) {
                 limpaForm();
                 alert(data.Mensagem);
-                alert(data.sucesso);
             }
             else {
                 alert(data.Mensagem);
-                alert(data.sucesso);
             }
         },
         error: function () {
@@ -68,4 +66,21 @@ function limpaForm() {
     FormCadastro.agencia.value = "";
     FormCadastro.conta.value = "";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
