@@ -1,0 +1,84 @@
+﻿
+
+@model List<Estabelecimento.Modelo.clsEstabelecimento>
+
+<div class="row">
+
+    <div class="col-md-6 frm-pesquisar">
+        <form method="get" action="@Url.Action("Index","Supermercado")">
+            <span> Pesquisar</span>
+            <input class="tamanho-campo-pesquisar" type="text" name="s" value="@Request.Params["s"]" />
+            <button class="botao-pesquisar-crud" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    @*<div class="col-md-6 botao-cadastra">
+        <button type="button"  class="btn btn-block">+ Estabelecimento</button>
+    </div>*@
+
+   
+        <table class="tabela-de-cadastro">
+            <tr>
+                <th>Razão Social</th>
+                <th>Nome fantasia</th>
+                <th>Status</th>
+                <th>Visualizar</th>
+                <th>Edit</th>
+                <th>Excluir</th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr class="cabecalho-cadastro">
+                    <td>@item.razao_social</td>
+                    <td>@item.nome_fantasia</td>
+                    <td>@((item.status == 1)? "Ativo" : "Inativo")</td>
+                    <td> <a href="#" onclick="Visualizar('@item.id_estabelecimento')"><i class="fa fa-eye"></i></a> </td>
+                    <td> <a href="#" onclick="Editar('@item.id_estabelecimento')"><i class="fa fa-edit"></i></a></td>
+                    <td> <a href="#" onclick="return Excluir('@item.id_estabelecimento')"><i class="fa fa-trash"></i></a></td>
+                </tr>
+
+
+                <tr id="@item.id_estabelecimento" class="info-visualizar disp-none">
+                    <td colspan="6">
+                        <div>
+                            <div class="col-md-6"><strong>Razão Social:</strong> <span>@item.razao_social</span></div>
+                            <div class="col-md-6"><strong>Nome Fantasia:</strong> <span>@item.nome_fantasia</span></div>
+                            <div class="col-md-6"><strong>CNPJ:</strong> <span>@item.cnpj</span></div>
+                            <div class="col-md-6"><strong>E-mail:</strong> <span>@item.email</span></div>
+                            <div class="col-md-6"><strong>Endereço:</strong> <span>@item.endereco</span></div>
+                            <div class="col-md-6"><strong>Cidade:</strong> <span>@((item.id_cidade > 0)? item.cidade.nome_municipio : "")</span></div>
+                            <div class="col-md-6"><strong>Estado:</strong> <span>@((item.id_estado > 0) ? item.estado.nome : "")</span></div>
+                            <div class="col-md-6"><strong>Telefone:</strong> <span>@item.telefone</span></div>
+                            <div class="col-md-6"><strong>Data de cadastro:</strong> <span>@item.data_cadastro</span></div>
+                            <div class="col-md-6"><strong>Categoria:</strong> <span>@item.categoria.categoria</span></div>
+                            <div class="col-md-6"><strong>Status:</strong> <span>@((item.status == 1) ? "Ativo" : "Inativo")</span></div>
+                            <div class="col-md-6"><strong>Agência:</strong> <span>@item.agencia</span></div>
+                            <div class="col-md-6"><strong>Conta:</strong> <span>@item.conta</span></div>
+                        </div>
+                        <span class="fechar-visualizar" onclick="Fechar('@item.id_estabelecimento')">fechar</span>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+   
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

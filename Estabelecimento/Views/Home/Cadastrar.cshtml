@@ -1,0 +1,189 @@
+﻿@using Estabelecimento.Modelo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Cadastrar";
+
+    var Categorias = ViewBag.Categorias as List<clsCategoria>;
+    var Estados = ViewBag.Estados as List<clsEstado>;
+    var Cidades = ViewBag.Cidades as List<clsCidade>;
+}
+
+<div class="col-md-12">
+    <h2 class="titulo-cadastrar">Crie por aqui seu Estabelecimento!!!</h2>  
+</div>
+
+<div class="col-md-12">
+    <form method="post" name="FormCadastro">
+        <div class="form-group col-md-6">
+            <label>Razão Social</label>
+            <input type="text" name="razao_social" placeholder="Razão Social" class="form-control" required />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Nome Fantasia</label>
+            <input type="text" name="nome_fantasia" placeholder="Nome Fantasia" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>CNPJ</label>
+            <input  type="text" name="cnpj" placeholder="CNPJ" class="form-control" required/>
+        </div>
+
+        <div class="form-group col-md-8">
+            <label>Endereço</label>
+            <input type="text" name="endereco" placeholder="Endereço" class="form-control" />
+        </div>
+
+
+        <div class="form-group col-md-4">
+            <label>Cidade</label>
+            <select name="id_cidade" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var cidade in Cidades)
+                {
+                    <option value="@cidade.id_cidade">@cidade.nome_municipio</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Estado</label>
+            <select name="id_estado" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var estado in Estados)
+                {
+                    <option value="@estado.id_estado">@estado.nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Telefone</label>
+            <input type="text" name="telefone" placeholder="Telefone" class="form-control" />
+        </div>
+
+      
+
+        <div class="form-group col-md-6">
+            <label>E-mail</label>
+            <input type="text" name="email" placeholder="E-mail" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Categoria</label>
+            <select name="id_categoria" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var categoria in Categorias)
+                {
+                    <option value="@categoria.id_categoria">@categoria.categoria</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Status</label>
+            <select name="status" class="form-control">
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Agencia</label>
+            <input type="text" name="agencia" placeholder="Agencia" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Conta</label>
+            <input type="text" name="conta" placeholder="Conta" class="form-control" />
+        </div> 
+
+        <div class="btn-cadastrar">
+            <button type="button" onclick="validaForm()">Cadastrar</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+@*script abaixo esta aqui 
+<script src="~/Scripts/formularioCadastrar.js"></script>*@
+
+@*<script>
+    function validaForm() {
+        //var RazaoSocial = FormCadastro.razao_social.value;
+        //var NomeFantasia = FormCadastro.nome_fantasia.value;
+        //var Cnpj = FormCadastro.cnpj.value;
+        //var Endereco = FormCadastro.endereco.value;
+        //var Cidade = FormCadastro.id_cidade.value;
+        //var Estado = FormCadastro.id_estado.value;
+        //var Telefone = FormCadastro.telefone.value;
+        //var Email = FormCadastro.email.value;
+        //var Categoria = FormCadastro.id_categoria.value;
+        //var Status = FormCadastro.status.value;
+        //var Agencia = FormCadastro.agencia.value;
+        //var Conta = FormCadastro.conta.value;
+
+        var objeto ={
+            razao_social: FormCadastro.razao_social.value,
+            nome_fantasia: FormCadastro.nome_fantasia.value,
+            Cnpj : FormCadastro.cnpj.value,
+            Endereco : FormCadastro.endereco.value,
+            id_cidade: FormCadastro.id_cidade.value,
+            id_estado: FormCadastro.id_estado.value,
+            Telefone : FormCadastro.telefone.value,
+            Email : FormCadastro.email.value,
+            id_categoria: FormCadastro.id_categoria.value,
+            Status : FormCadastro.status.value,
+            Agencia : FormCadastro.agencia.value,
+            Conta : FormCadastro.conta.value
+        }
+
+
+        $.ajax({
+            type: 'post',
+            url: "@Url.Action("Cadastrar", "Home")",
+            data:{'estabelecimento':objeto},
+            success: function (data) {
+                if (data.sucesso == true) {
+                    limpaForm();
+                    alert(data.Mensagem);
+                    alert(data.sucesso);
+                }
+                else {
+                    alert(data.Mensagem);
+                    alert(data.sucesso);
+                }
+            },
+            error: function () {
+                alert("Erro ao tentar cadastrar");
+            }
+        });
+
+    }
+    
+
+    function limpaForm() {
+        //limpa o formulário
+
+        FormCadastro.razao_social.value = "";
+        FormCadastro.nome_fantasia.value = "";
+        FormCadastro.cnpj.value = "";
+        FormCadastro.endereco.value = "";
+        FormCadastro.id_cidade.value = 0;
+        FormCadastro.id_estado.value = 0;
+        FormCadastro.telefone.value = "";
+        FormCadastro.email.value = "";
+        FormCadastro.id_categoria.value = 0;
+        FormCadastro.status.value = "";
+        FormCadastro.agencia.value = "";
+        FormCadastro.conta.value = "";
+    }
+
+</script>*@
+
+
