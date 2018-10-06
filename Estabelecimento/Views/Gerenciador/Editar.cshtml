@@ -13,22 +13,22 @@
 <div class="col-md-12">
     <form method="post" name="FormEditar">
         <input type="hidden" name="id_estabelecimento" value="@Model.id_estabelecimento"/>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
             <label>Razão Social</label>
             <input type="text" name="razao_social" placeholder="Razão Social" class="form-control" value="@Model.razao_social" />
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
             <label>Nome Fantasia</label>
             <input type="text" name="nome_fantasia" placeholder="Nome Fantasia" class="form-control" value="@Model.nome_fantasia" />
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
             <label>CNPJ</label>
-            <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="@Model.cnpj" />
+            <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="@Model.cnpj" maxlength="18" onkeyup="maskCnpj(this)" />
         </div>
 
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-7">
             <label>Endereço</label>
             <input type="text" name="endereco" placeholder="Endereço" class="form-control" value="@Model.endereco"/>
         </div>
@@ -63,12 +63,12 @@
 
 
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-8">
             <label>E-mail</label>
             <input type="text" name="email" placeholder="E-mail" class="form-control" value="@Model.email" />
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label>Categoria</label>
             <select name="id_categoria" class="form-control">
                 <option value="0">Selecionar</option>
@@ -89,12 +89,12 @@
 
         <div class="form-group col-md-4">
             <label>Agencia</label>
-            <input type="text" name="agencia" placeholder="Agencia" class="form-control" value="@Model.agencia" />
+            <input type="text" name="agencia" placeholder="Agencia" class="form-control" value="@Model.agencia" maxlength="5" onkeyup="maskAgencia(this)" />
         </div>
 
         <div class="form-group col-md-4">
             <label>Conta</label>
-            <input type="text" name="conta" placeholder="Conta" class="form-control" value="@Model.conta"/>
+            <input type="text" name="conta" placeholder="Conta" class="form-control" value="@Model.conta" maxlength="8" onkeyup="maskConta(this)"/>
         </div>
 
         <div class="btn-cadastrar">

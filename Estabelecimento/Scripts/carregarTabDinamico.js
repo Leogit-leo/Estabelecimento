@@ -61,7 +61,10 @@ function CriarNovaDivTabContentNovoConteudo(idAba,idCategoria) {
     $.ajax({
         type:'get',
         //url: "http://localhost:50188/"+idAba+"/Index",
-        url: "http://" +window.location.host+"/Gerenciador/Index?categoria=" + idCategoria, //passar o data referente a categoria
+        url: "http://" + window.location.host + "/Gerenciador/Index?categoria=" + idCategoria, //passar o data referente a categoria
+        beforeSend:function(){
+            $("#imgLoad").removeClass("disp-none");
+        },
         success: function (data) {
             novaDiv.innerHTML = data;
         },

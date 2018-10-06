@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Estabelecimento.Helpers;
 
 namespace Estabelecimento.Controllers
 {
@@ -66,6 +67,12 @@ namespace Estabelecimento.Controllers
                     ret.Mensagem += "Para a categoria SUPERMERCADO o telefone passa a ser obrigatorio. <br/>";
             }
 
+            if (!string.IsNullOrWhiteSpace(estabelecimento.email))
+            {
+                if(Funcoes.IsEmail(estabelecimento.email) != true)
+                    ret.Mensagem += "Formato de e-mail invalido. Use um e-mail valido. ex: meuEmail@meuServidor.com <br/>";
+
+            }
                             
 
             if (ret.Mensagem != null && ret.Mensagem != "")
