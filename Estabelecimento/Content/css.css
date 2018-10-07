@@ -137,12 +137,21 @@
     height: 200px;
 }
 .fechar-visualizar{
-     padding-right: 3px;
+    padding-right: 3px;
     margin-right: 9px;
     float: right;
     background-color: red;
-    border-radius: 10px;
+    border-radius: 8px;
+    color: black;
+    font-weight: 600;
 }
+
+.fechar-visualizar:hover{
+   background-color: #272758;
+   color: #ffffff;    
+}
+
+
 .cabecalho-cadastro{
     background-color: #272758;
     color: white;
@@ -157,5 +166,21 @@
     text-align: center;
     font-size: 18px;
     color: #ffffff;
+}
+#imgLoad{
+    z-index:99999;
+}
+.modal-header{
+    background: #323271;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 3px;
+}
+
+.modal-header button{
+    background: black !important;
+    color: red !important;
+    margin-top: -15px !important;
+    width: 31px !important;
 }
 

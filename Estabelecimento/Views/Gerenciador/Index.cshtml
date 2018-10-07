@@ -5,22 +5,21 @@
 <div class="row">
 
     <div class="col-md-6 frm-pesquisar">
-        <form method="get" action="@Url.Action("Index","Supermercado")">
+        
             <span> Pesquisar</span>
-            <input class="tamanho-campo-pesquisar" type="text" name="s" value="@Request.Params["s"]" />
-            <button class="botao-pesquisar-crud" type="submit"><i class="fa fa-search"></i></button>
-        </form>
+            <input class="tamanho-campo-pesquisar" type="text" name="filtro" id="filtrar-tabela" />
+            
+        
     </div>
 
     @*<div class="col-md-6 botao-cadastra">
         <button type="button"  class="btn btn-block">+ Estabelecimento</button>
     </div>*@
 
-   
         <table class="tabela-de-cadastro">
             <tr>
                 <th>Razão Social</th>
-                <th>Nome fantasia</th>
+                <th>CNPJ</th>
                 <th>Status</th>
                 <th>Visualizar</th>
                 <th>Edit</th>
@@ -30,9 +29,9 @@
 
             @foreach (var item in Model)
             {
-                <tr class="cabecalho-cadastro">
+                <tr class="cabecalho-cadastro filtro-estabelecimento">
                     <td>@item.razao_social</td>
-                    <td>@item.nome_fantasia</td>
+                    <td class="info-cnpj">@item.cnpj</td>
                     <td>@((item.status == 1)? "Ativo" : "Inativo")</td>
                     <td> <a href="#" onclick="Visualizar('@item.id_estabelecimento')"><i class="fa fa-eye"></i></a> </td>
                     <td> <a href="#" onclick="Editar('@item.id_estabelecimento')"><i class="fa fa-edit"></i></a></td>
@@ -51,7 +50,7 @@
                             <div class="col-md-6"><strong>Cidade:</strong> <span>@((item.id_cidade > 0)? item.cidade.nome_municipio : "")</span></div>
                             <div class="col-md-6"><strong>Estado:</strong> <span>@((item.id_estado > 0) ? item.estado.nome : "")</span></div>
                             <div class="col-md-6"><strong>Telefone:</strong> <span>@item.telefone</span></div>
-                            <div class="col-md-6"><strong>Data de cadastro:</strong> <span>@item.data_cadastro</span></div>
+                            <div class="col-md-6"><strong>Data de cadastro:</strong> <span>@Convert.ToDateTime(item.data_cadastro).ToString("dd/MM/yyyy")</span></div>
                             <div class="col-md-6"><strong>Categoria:</strong> <span>@item.categoria.categoria</span></div>
                             <div class="col-md-6"><strong>Status:</strong> <span>@((item.status == 1) ? "Ativo" : "Inativo")</span></div>
                             <div class="col-md-6"><strong>Agência:</strong> <span>@item.agencia</span></div>
@@ -63,9 +62,6 @@
             }
 
         </table>
-
-
-   
 
 </div>
 

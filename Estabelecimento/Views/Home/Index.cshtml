@@ -3,7 +3,7 @@
 }
 
 <div class="col-md-10">
-
+       
     <ul id="lista-tab-dinamico" class="nav nav-tabs">
         <li class="active">
             <a data-toggle="tab" href="#home" onclick="VincularChamadaAbaAoConteudoPertenceAba('home')">Home</a>
@@ -11,6 +11,9 @@
     </ul>
 
     <div id="conteudo-tab-content-dinamico" class="tab-content">
+
+        <img id="imgLoad" class="disp-none" style="padding-left: 400px;" src="~/Content/89.gif" />
+
         <div id="home" class="tab-pane fade in active">
             <h3>Bem vindo ao sistema de cadastro de Estabelecimentos</h3>
             <a href="@Url.Action("Cadastrar","Home")">
@@ -18,15 +21,50 @@
                     Cadastre um estabelecimento
                 </div>
             </a>
-
-          
-               <img id="imgLoad" class="disp-none" src="~/Content/89.gif" />
-          
-            
-           
         </div>
     </div>
 
 </div>
 
 
+<script>
+    var campoFiltro = document.querySelector("#filtrar-tabela");
+
+    campoFiltro.addEventListener("input", function () {
+
+        console.log(campoFiltro);
+        alert("chegou");
+        ////pegar todos os cnpj dos estabelecimentos da tabela e comparar com o que esta sendo digitado no input
+        //var estabelecimento = document.querySelectorAll(".filtro-estabelecimento");
+
+        //if (this.value.length > 0) {
+        //    for (var i = 0 ; i < estabelecimento.length; i++) {
+
+        //        var estab = estabelecimento[i];
+        //        var tdCNPJ = paciente.querySelector(".info-cnpj");
+        //        var cnpj = tdNome.textContent;
+
+        //        var expressao = new RegExp(this.value, "i");
+
+        //            //outra maneira de comparar sem usar expressões regulares
+        //            var resultado = this.value.substr(0, this.value.length);
+
+
+        //        //esconder todo mundo que é diferente do conteudo do texto e mostrar todo mundo que é igual
+        //        if (!expressao.test(cnpj)) {
+        //            estab.classList.add("disp-none");
+        //        } else {
+        //            estab.classList.remove("disp-none");
+        //        }
+        //    }
+        //} else {
+        //    for (var i = 0 ; i < estabelecimento.length; i++) {
+
+        //        var estab = estabelecimento[i];
+
+        //        estab.classList.remove("disp-none");
+        //    }
+        //}
+    });
+
+</script>

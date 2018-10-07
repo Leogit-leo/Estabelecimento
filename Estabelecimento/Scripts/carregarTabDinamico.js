@@ -56,16 +56,18 @@ function CriarNovaDivTabContentNovoConteudo(idAba,idCategoria) {
     novaDiv.classList.add("active");
     novaDiv.classList.add("in");
 
+
     //carregar conteudo referente a aba
     
     $.ajax({
         type:'get',
         //url: "http://localhost:50188/"+idAba+"/Index",
         url: "http://" + window.location.host + "/Gerenciador/Index?categoria=" + idCategoria, //passar o data referente a categoria
-        beforeSend:function(){
+        beforeSend: function () {
             $("#imgLoad").removeClass("disp-none");
         },
         success: function (data) {
+            $("#imgLoad").addClass("disp-none");
             novaDiv.innerHTML = data;
         },
         error: function () {

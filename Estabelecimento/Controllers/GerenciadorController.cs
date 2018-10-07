@@ -75,7 +75,7 @@ namespace Estabelecimento.Controllers
 
                                     }
 
-                ).OrderByDescending(x => x.data_cadastro).ToList();
+                ).OrderBy(x => x.razao_social).ToList();
 
             }
             
