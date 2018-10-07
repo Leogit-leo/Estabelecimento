@@ -120,13 +120,19 @@
 </script>
 
 <script>
-    function Excluir(id) {
+    function Excluir(id, nomeCat, id_cat) {
         var excluir = confirm("Excluir este estabelecimento?");
         if (excluir == true) {
             
             $.post('@Url.Action("Excluir", "Gerenciador")', 'id_estabelecimento=' + id, function (data) {
-                alert(data.Mensagem);
+                
+               
             });
+
+            CarregarDinamico(nomeCat.toLowerCase(), id_cat);
+
+            console.log(nomeCat.toLowerCase());
+            console.log(id_cat);
         }
     }
 </script>

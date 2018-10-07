@@ -35,7 +35,7 @@
                     <td>@((item.status == 1)? "Ativo" : "Inativo")</td>
                     <td> <a href="#" onclick="Visualizar('@item.id_estabelecimento')"><i class="fa fa-eye"></i></a> </td>
                     <td> <a href="#" onclick="Editar('@item.id_estabelecimento')"><i class="fa fa-edit"></i></a></td>
-                    <td> <a href="#" onclick="return Excluir('@item.id_estabelecimento')"><i class="fa fa-trash"></i></a></td>
+                    <td> <a href="#" onclick="return Excluir('@item.id_estabelecimento', '@item.categoria.categoria', '@item.id_categoria')"><i class="fa fa-trash"></i></a></td>
                 </tr>
 
 

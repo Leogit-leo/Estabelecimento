@@ -35,7 +35,7 @@ function CarregarDinamico(id,idCategoria) {
                   divContent.classList.remove("disp-none");
 
 
-                  //teste 07/10 -leo
+                  //mesmo se a aba ja existe ao clicar nela denovo atualiza a pagina
                   $.ajax({
                       type: 'get',
                       //url: "http://localhost:50188/"+idAba+"/Index",

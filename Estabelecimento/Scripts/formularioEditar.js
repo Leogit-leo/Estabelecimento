@@ -19,6 +19,9 @@
 
         //ao editar é passado o nome da categoria para carregar dinamicamente os dados editados
         nomeCategora = document.querySelector('#campo_categoria').textContent.toLowerCase();
+       
+
+        console.log(nomeCategora);
         
         $.ajax({
             type: 'post',
