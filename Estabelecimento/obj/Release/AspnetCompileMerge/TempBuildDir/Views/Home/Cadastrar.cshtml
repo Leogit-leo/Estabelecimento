@@ -1,0 +1,119 @@
+﻿@using Estabelecimento.Modelo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Cadastrar";
+
+    var Categorias = ViewBag.Categorias as List<clsCategoria>;
+    var Estados = ViewBag.Estados as List<clsEstado>;
+    var Cidades = ViewBag.Cidades as List<clsCidade>;
+}
+
+<div class="col-md-12">
+    <h2 class="titulo-cadastrar">Crie por aqui seu Estabelecimento!!!</h2>  
+</div>
+
+<div class="col-md-12">
+    <form method="post" name="FormCadastro">
+        <div class="form-group col-md-6">
+            <label>Razão Social</label>
+            <input type="text" name="razao_social" placeholder="Razão Social" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Nome Fantasia</label>
+            <input type="text" name="nome_fantasia" placeholder="Nome Fantasia" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>CNPJ</label>
+            <input  type="text" name="cnpj" placeholder="CNPJ" class="form-control" maxlength="18" onkeyup="maskCnpj(this)" />
+        </div>
+
+        <div class="form-group col-md-8">
+            <label>Endereço</label>
+            <input type="text" name="endereco" placeholder="Endereço" class="form-control" />
+        </div>
+
+
+        <div class="form-group col-md-4">
+            <label>Cidade</label>
+            <select name="id_cidade" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var cidade in Cidades)
+                {
+                    <option value="@cidade.id_cidade">@cidade.nome_municipio</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Estado</label>
+            <select name="id_estado" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var estado in Estados)
+                {
+                    <option value="@estado.id_estado">@estado.nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Telefone</label>
+            <input type="text" name="telefone" placeholder="Telefone" class="form-control" />
+        </div>
+
+      
+
+        <div class="form-group col-md-6">
+            <label>E-mail</label>
+            <input type="text" name="email" placeholder="E-mail" class="form-control" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Categoria</label>
+            <select name="id_categoria" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var categoria in Categorias)
+                {
+                    <option value="@categoria.id_categoria">@categoria.categoria</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Status</label>
+            <select name="status" class="form-control">
+                <option value="1" selected>Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Agencia</label>
+            <input type="text" name="agencia" placeholder="Agencia" class="form-control" maxlength="5" onkeyup="maskAgencia(this)" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Conta</label>
+            <input type="text" name="conta" placeholder="Conta" class="form-control" maxlength="8" onkeyup="maskConta(this)" />
+        </div> 
+
+        <div class="btn-cadastrar">
+            <button type="button" onclick="validaForm()">Cadastrar</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+@*script abaixo esta aqui 
+<script src="~/Scripts/formularioCadastrar.js"></script>*@
+
+
+
+

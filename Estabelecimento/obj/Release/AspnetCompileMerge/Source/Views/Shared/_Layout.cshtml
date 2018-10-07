@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="">
+    <title> @ViewBag.Titulo | Controle Estabelecimentos</title>
+    <link href="~/Content/css.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+
+    <header>
+
+        <div class="col-md-12 faixa-apresentacao">
+            <h1>Sistema de cadastro de estabelecimentos</h1>
+        </div>
+
+    </header>
+
+    <aside>
+        <!-- sera o menu lateral do sistema -->
+        <div class="col-md-2 div-menu">
+            <nav>
+                <ul id="menu">
+                    <li>
+                        <a id="home" href="@Url.Action("Index","Home")" onclick="CarregarDinamico('home','0')">Home</a>
+                        @*<a href="@Url.Action("Index","Home")">Home</a>*@
+                    </li>
+                    <li>
+                        <a href="#">Estabelecimentos</a>
+
+                        <ul>
+                            <li><a id="supermercado" href="#" onclick="CarregarDinamico('supermercado','1')">Supermercado</a></li>
+                            @*<li><a href="@Url.Action("Index","Supermercado")">Supermercado</a></li>*@
+                            <li><a id="restaurante" href="#" onclick="CarregarDinamico('restaurante','2')">Restaurante</a></li>
+                            <li><a id="borracharia" href="#" onclick="CarregarDinamico('borracharia','3')">Borracharia</a></li>
+                            <li><a id="posto" href="#" onclick="CarregarDinamico('posto','4')">Posto</a></li>
+                            <li><a id="oficina" href="#" onclick="CarregarDinamico('oficina','5')">Oficina</a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </aside>
+
+    <main>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+    </main>
+
+
+    <footer id="footer">
+        <div class="col-md-12">
+
+            
+
+            &copy; Leonardo Barbosa 2018
+        </div>
+    </footer>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/carregarTabDinamico.js"></script>
+    <script src="~/Scripts/formularioCadastrar.js"></script>
+    <script src="~/Scripts/formularioEditar.js"></script>
+    <script src="~/Scripts/mascaras.js"></script>
+    
+
+</body>
+</html>
+
+
+
+<script>
+    function Visualizar(id_estabelecimento) {
+        $('#' + id_estabelecimento).removeClass("disp-none");
+    }
+
+    function Fechar(id_estabelecimento) {
+        $('#' + id_estabelecimento).addClass("disp-none");
+    }
+
+    function Editar(val) {
+        $.get('@Url.Action("Editar", "Gerenciador")', 'id=' + val, function (data) {
+            $('#exampleModal').find('.modal-title').html("Editar" + "#" + val);
+            $('#exampleModal').find('.modal-body').html(data);
+            $('#exampleModal').find('.modal-footer').hide();
+            $('#exampleModal').modal('show');
+        });
+    }
+
+
+</script>
+
+<script>
+    function Excluir(id, nomeCat, id_cat) {
+        var excluir = confirm("Excluir este estabelecimento?");
+        if (excluir == true) {
+            
+            $.post('@Url.Action("Excluir", "Gerenciador")', 'id_estabelecimento=' + id, function (data) {
+                
+                CarregarDinamico(nomeCat.toLowerCase(), id_cat);
+            });
+
+            console.log(nomeCat.toLowerCase());
+            console.log(id_cat);
+        }
+    }
+</script>
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+﻿@using Estabelecimento.Modelo
+@model Estabelecimento.Modelo.clsEstabelecimento
+    
+
+@{
+    ViewBag.Title = "Editar";
+
+    var Categorias = ViewBag.Categorias as List<clsCategoria>;
+    var Estados = ViewBag.Estados as List<clsEstado>;
+    var Cidades = ViewBag.Cidades as List<clsCidade>;
+}
+
+<div class="col-md-12">
+    <form method="post" name="FormEditar">
+        <input type="hidden" name="id_estabelecimento" value="@Model.id_estabelecimento"/>
+        
+        <div class="form-group col-md-12">
+            <label>Razão Social</label>
+            <input type="text" name="razao_social" placeholder="Razão Social" class="form-control" value="@Model.razao_social" />
+        </div>
+
+        <div class="form-group col-md-12">
+            <label>Nome Fantasia</label>
+            <input type="text" name="nome_fantasia" placeholder="Nome Fantasia" class="form-control" value="@Model.nome_fantasia" />
+        </div>
+
+        <div class="form-group col-md-5">
+            <label>CNPJ</label>
+            <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="@Model.cnpj" maxlength="18" onkeyup="maskCnpj(this)" />
+        </div>
+
+        <div class="form-group col-md-7">
+            <label>Endereço</label>
+            <input type="text" name="endereco" placeholder="Endereço" class="form-control" value="@Model.endereco"/>
+        </div>
+
+
+        <div class="form-group col-md-4">
+            <label>Cidade</label>
+            <select name="id_cidade" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var cidade in Cidades)
+                {
+                    <option @((@cidade.id_cidade == Model.id_cidade) ? "selected" : "") value="@cidade.id_cidade">@cidade.nome_municipio</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Estado</label>
+            <select name="id_estado" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var estado in Estados)
+                {
+                    <option @((@estado.id_estado == Model.id_estado) ? "selected" : "") value="@estado.id_estado">@estado.nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Telefone</label>
+            <input type="text" name="telefone" placeholder="Telefone" class="form-control" value="@Model.telefone" />
+        </div>
+
+
+
+        <div class="form-group col-md-8">
+            <label>E-mail</label>
+            <input type="text" name="email" placeholder="E-mail" class="form-control" value="@Model.email" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Categoria</label>
+            <select name="id_categoria" class="form-control">
+                <option value="0">Selecionar</option>
+                @foreach (var categoria in Categorias)
+                {
+                    <option id="campo_categoria" @((@categoria.id_categoria == Model.id_categoria) ? "selected" : "") value="@categoria.id_categoria">@categoria.categoria</option>
+                    
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Status</label>
+            <select name="status" class="form-control">
+                <option @((Model.status == 0)? "selected" : "") value="0">Inativo</option>
+                <option @((Model.status == 1)? "selected" : "") value="1">Ativo</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Agencia</label>
+            <input type="text" name="agencia" placeholder="Agencia" class="form-control" value="@Model.agencia" maxlength="5" onkeyup="maskAgencia(this)" />
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Conta</label>
+            <input type="text" name="conta" placeholder="Conta" class="form-control" value="@Model.conta" maxlength="8" onkeyup="maskConta(this)"/>
+        </div>
+
+        <div class="btn-cadastrar">
+            <button type="button" onclick="ValidaFormEditar()">Salvar</button>
+        </div>
+
+    </form>
+</div>
+
+

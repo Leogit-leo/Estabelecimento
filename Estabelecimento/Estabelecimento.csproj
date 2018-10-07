@@ -208,6 +208,7 @@
     <Content Include="Content\font-awesome-4.7.0\fonts\FontAwesome.otf" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Gerenciador\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\Estabelecimento.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,0 +1,186 @@
+* {margin:0px; padding:0px;}
+.faixa-apresentacao{
+    height:75px;
+    background: #272758;
+    padding: 0px;
+    margin: 0px;
+}
+.faixa-apresentacao h1{
+    margin: 0px;
+    padding: 0px;
+    color:#ffffff;
+    text-align: center;
+    padding-top: 25px;
+    font-size: 24px; 
+}
+#menu{
+    margin: 0px;
+    padding: 0px;
+    float: left;   
+}
+
+#menu li{
+    list-style: none;
+    width: 200px;
+    background-color: red;
+    text-align: center;
+    border-bottom: 5px solid black;
+}
+
+#menu li a{
+    display: block;
+    padding:20px;
+    border-left: 4px solid #444;
+    text-decoration: none;
+    color: white; 
+}
+
+#menu li a:hover{
+   border-left: 4px solid #069;
+   background: #b93939;  
+}
+
+#menu li ul{
+     display: none;
+ }
+#menu li:hover ul{
+    display:block;
+}
+#menu li:hover ul li{
+    background: #333;
+}
+#menu li:hover ul li a{
+    color:#ccc;
+    padding:8px;
+}
+.div-menu{
+    padding:0px !important;
+}
+#footer{
+    position: fixed;
+    bottom: 0px;
+    background: #272758;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+}
+.fechar-aba-dinamica-x{
+    position: absolute;
+    z-index: 999;
+    margin-right: -12px;
+    padding-right: -21px;
+    padding-left: 85%;
+    padding-top: -8px;
+    color: #ea7777;
+    font-weight: 700;
+}
+.disp-none{
+    display:none !important;
+}
+
+#lista-tab-dinamico li{
+    width: 180px !important;
+    text-align: center !important;
+}
+
+#lista-tab-dinamico li span{
+    margin-left: -86px;
+}
+
+.tabela-de-cadastro{
+    width:100%;
+    height: auto;
+    overflow: scroll;
+    margin-bottom: 50px;
+}
+
+.tabela-de-cadastro tr{
+  border:1px solid black;
+}
+
+.botao-cadastra {
+    margin-bottom: 30px;
+}
+
+.botao-cadastra button{
+    width: 80px;
+    margin-top: 25px;
+    float: right;
+    height: 25px;
+    padding-top: 2px;
+}
+
+.frm-pesquisar{
+    margin-top: 26px;
+    padding-left: 0px !important;
+    margin-bottom: 20px;
+}
+
+.frm-pesquisar input{
+    width: 280px;   
+}
+
+.btn-cadastrar{
+    text-align: center;
+}
+
+.btn-cadastrar button{
+    width: 200px;
+    height: 50px;
+}
+.titulo-cadastrar{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 27px;
+}
+.info-visualizar{
+    height: 200px;
+}
+.fechar-visualizar{
+    padding-right: 3px;
+    margin-right: 9px;
+    float: right;
+    background-color: red;
+    border-radius: 8px;
+    color: black;
+    font-weight: 600;
+}
+
+.fechar-visualizar:hover{
+   background-color: #272758;
+   color: #ffffff;    
+}
+
+
+.cabecalho-cadastro{
+    background-color: #272758;
+    color: white;
+    height: 30px !important;
+    border: 3px solid black !important; 
+    text-transform:uppercase;
+}
+.home-cadastre{
+    height: 111px;
+    background-color: #444;
+    padding-top: 43px;
+    text-align: center;
+    font-size: 18px;
+    color: #ffffff;
+}
+#imgLoad{
+    z-index:99999;
+}
+.modal-header{
+    background: #323271;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 3px;
+}
+
+.modal-header button{
+    background: black !important;
+    color: red !important;
+    margin-top: -15px !important;
+    width: 31px !important;
+}
+
