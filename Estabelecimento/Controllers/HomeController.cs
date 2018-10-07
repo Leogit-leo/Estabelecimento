@@ -17,11 +17,13 @@ namespace Estabelecimento.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Titulo = "Home";
             return View();
         }
 
         public ActionResult Cadastrar()
         {
+            ViewBag.Titulo = "Cadastrar";
             //Popular DropDown Categorias,Estados
             List<clsCategoria> categorias = new List<clsCategoria>();
             List<clsEstado> estados = new List<clsEstado>();
@@ -118,9 +120,6 @@ namespace Estabelecimento.Controllers
             return Json(ret, JsonRequestBehavior.AllowGet);
             
         }
-
-
-        
 
     }
 }

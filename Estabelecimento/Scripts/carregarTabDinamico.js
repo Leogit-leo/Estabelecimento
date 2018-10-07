@@ -33,8 +33,31 @@ function CarregarDinamico(id,idCategoria) {
                   divContent.classList.add("in");
                   divContent.classList.add("active");
                   divContent.classList.remove("disp-none");
+
+
+                  //teste 07/10 -leo
+                  $.ajax({
+                      type: 'get',
+                      //url: "http://localhost:50188/"+idAba+"/Index",
+                      url: "http://" + window.location.host + "/Gerenciador/Index?categoria=" + idCategoria, //passar o data referente a categoria
+                      beforeSend: function () {
+                          $("#imgLoad").removeClass("disp-none");
+                      },
+                      success: function (data) {
+                          $("#imgLoad").addClass("disp-none");
+                          divContent.innerHTML = data;
+                      },
+                      error: function () {
+                          divContent.innerHTML = "<h1>Conteudo indisponível</h1>";
+                      }
+                  });
               }
           });
+
+
+
+
+
 
     //se o id da aba não existir ele cria a nova aba
     if (existe != true) {

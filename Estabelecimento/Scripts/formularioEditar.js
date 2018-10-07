@@ -17,7 +17,9 @@
             Conta: FormEditar.conta.value
         }
 
-
+        //ao editar é passado o nome da categoria para carregar dinamicamente os dados editados
+        nomeCategora = document.querySelector('#campo_categoria').textContent.toLowerCase();
+        
         $.ajax({
             type: 'post',
             url: "http://" + window.location.host + "/Gerenciador/Editar",
@@ -26,6 +28,8 @@
                 if (data.sucesso == true) {
                     alert(data.Mensagem);
                     $('#exampleModal').modal('hide');
+
+                    CarregarDinamico(nomeCategora, FormEditar.id_categoria.value);
                 }
                 else {
                     alert(data.Mensagem);
