@@ -126,10 +126,8 @@
             
             $.post('@Url.Action("Excluir", "Gerenciador")', 'id_estabelecimento=' + id, function (data) {
                 
-               
+                CarregarDinamico(nomeCat.toLowerCase(), id_cat);
             });
-
-            CarregarDinamico(nomeCat.toLowerCase(), id_cat);
 
             console.log(nomeCat.toLowerCase());
             console.log(id_cat);

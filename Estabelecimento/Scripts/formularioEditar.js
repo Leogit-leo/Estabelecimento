@@ -18,9 +18,36 @@
         }
 
         //ao editar é passado o nome da categoria para carregar dinamicamente os dados editados
-        nomeCategora = document.querySelector('#campo_categoria').textContent.toLowerCase();
+        //nomeCategora = document.querySelector('#campo_categoria').textContent.toLowerCase();
        
+        var nomeCategora = "";
+        var id_cat = FormEditar.id_categoria.value;
 
+        console.log(id_cat);
+
+        switch (id_cat) {
+
+            case '1':
+                nomeCategora = 'supermercado'
+                break;
+            case '2':
+                nomeCategora = 'restaurante'
+                break;
+            case '3':
+                nomeCategora = 'borracharia'
+                break;
+            case '4':
+                nomeCategora = 'posto'
+                break;
+            case '5':
+                nomeCategora = 'oficina'
+                break;
+
+            default:
+                break;
+        }
+
+        
         console.log(nomeCategora);
         
         $.ajax({
